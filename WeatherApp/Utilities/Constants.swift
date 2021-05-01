@@ -7,13 +7,29 @@
 
 import Foundation
 
+public enum CustomError: Error {
+    case noData
+    case apiError
+    case invalidURL
+    case serializationError
+    case invalidResponse
+    case genericError
+}
+
+public typealias SuccessHandler = (_ status: Bool, _ data: Data?) -> Void
+public typealias FailureHandler = (_ status: Bool, _ error: CustomError) -> Void
+
 enum Constants {
-    static let currentLocationURL = "http://api.openweathermap.org/data/2.5/weather?q=Nellore&appid=fae7190d7e6433ec3a45285ffcf55c86"
-    
-    
+    private static let apiKey = "fae7190d7e6433ec3a45285ffcf55c86"
+    static let UrlCurrentLocation = "http://api.openweathermap.org/data/2.5/weather?appid=" + Constants.apiKey + "&units=metric&q="
 }
 
 //MARK:- TableView, CollectionView constants
 extension Constants {
     static let HomeViewCellIdentifier = "HomeCell"
+}
+
+//MARK:- View Controller Identifiers
+extension Constants {
+    static let CityScreenVCIdentifier = "CityScreenVC"
 }

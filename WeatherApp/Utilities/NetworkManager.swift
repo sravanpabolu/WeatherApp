@@ -7,42 +7,32 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case noData
-    case apiError
-    case invalidURL
-    case serializationError
-    case invalidResponse
-}
-
 class NetworkManager {
-    
-    typealias completionHandler = (WeatherData?, NetworkError?) -> Void
-    
-    func performNetworkRequest(url: String, completion: @escaping completionHandler) {
+    func performNetworkRequest(url: String, successHandler: @escaping SuccessHandler, failureHandler: @escaping FailureHandler) {
+        
         guard let url = URL(string: url) else {
-            completion(nil, .invalidURL)
+            failureHandler(false, .invalidURL)
             return
         }
         
         let urlConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: urlConfig)
-        session.dataTask(with: url) { (data, response, error) in
+        
+        Logger.printMessage(message: "\(url)", request: "URL Request")
+        
+        session.dataTask(with: url) { (data, _, error) in
             if error != nil {
-                completion(nil, .apiError)
+                Logger.printMessage(message: "No Data", request: "API Error")
+                failureHandler(false, .apiError)
             }
             
             guard let data = data else {
-                completion(nil, .noData)
+                Logger.printMessage(message: "No Data", request: "Network Response")
+                failureHandler(false, .noData)
                 return
             }
             
-            do {
-                let weatherData = try JSONDecoder().decode(WeatherData.self, from: data)
-                completion(weatherData, nil)
-            } catch {
-                completion(nil, .serializationError)
-            }
+            successHandler(true, data)
         }.resume()
     }
 }
