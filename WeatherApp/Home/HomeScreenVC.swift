@@ -13,51 +13,54 @@ class HomeScreenVC: UIViewController {
     
     //MARK:- Vars
     let homeScreenVM = HomeScreenVM()
+    let defaultCities = [
+        "Paris",
+        "Dubai",
+        "London",
+        "Delhi",
+        "Kolkota",
+        "Mumbai",
+        "Chennai",
+        "Hyderabad",
+        "Nellore",
+        "Kochi"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        insertCity()
-        fetchCities()
-//        deleteCity()
-    
-        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 2) { [weak self] in
-            guard let self = self else { return }
+//        //TODO: REMOVE THIS- This is for testing purpose
+//        for aCity in self.defaultCities {
+//            insertCity(name: aCity)
+//        }
         
-            Logger.printMessage(message: "\(self.homeScreenVM.cities)", request: "Avaialble cities")
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        fetchCities()
     }
     
-    private func deleteCity() {
-        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 2) { [weak self] in
-            guard let self = self else { return }
-            
-            do {
-                try self.homeScreenVM.deleteCity(name: "Dubai")
-            } catch  {
-                Logger.printMessage(message: error.localizedDescription, request: "DBManager Fetch  Error")
-            }
-        }
-    }
-    
-    private func insertCity() {
+    private func deleteCity(at index: Int) {
         do {
-            try homeScreenVM.insertCity(name: "Paris")
-            try homeScreenVM.insertCity(name: "Dubai")
-            try homeScreenVM.insertCity(name: "London")
-            try homeScreenVM.insertCity(name: "Delhi")
-            try homeScreenVM.insertCity(name: "Kolkota")
-            try homeScreenVM.insertCity(name: "Mumbai")
-            try homeScreenVM.insertCity(name: "Chennai")
-            try homeScreenVM.insertCity(name: "Hyderabad")
-            try homeScreenVM.insertCity(name: "Nellore")
-            try homeScreenVM.insertCity(name: "Kochi")
+            try homeScreenVM.deleteCity(name: homeScreenVM.cities[index])
+            homeScreenVM.cities.remove(at: index)
+        } catch  {
+            Logger.printMessage(message: error.localizedDescription, request: "DBManager delete Error")
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.tableView.reloadData()
+        }
+    }
+    
+    private func insertCity(name: String) {
+        do {
+            try self.homeScreenVM.insertCity(name: name)
         } catch {
-            Logger.printMessage(message: error.localizedDescription, request: "DBManager Error")
+            Logger.printMessage(message: error.localizedDescription, request: "DBManager Insertion Error")
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.tableView.reloadData()
         }
     }
     
@@ -65,11 +68,14 @@ class HomeScreenVC: UIViewController {
         do {
             try homeScreenVM.fetchCities()
         } catch  {
-            Logger.printMessage(message: error.localizedDescription, request: "DBManager Fetch  Error")
+            Logger.printMessage(message: error.localizedDescription, request: "DBManager Fetch Error")
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.tableView.reloadData()
         }
     }
-    
-    
 }
 
 extension HomeScreenVC: UITableViewDataSource {
@@ -92,5 +98,11 @@ extension HomeScreenVC: UITableViewDelegate {
         let vc: CityScreenVC = storyboard.instantiateViewController(identifier: Constants.CityScreenVCIdentifier) as CityScreenVC
         vc.cityName = homeScreenVM.cities[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
+    }
+        
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            deleteCity(at: indexPath.row)
+        }
     }
 }
