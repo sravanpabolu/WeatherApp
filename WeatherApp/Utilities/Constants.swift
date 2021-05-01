@@ -13,7 +13,8 @@ public enum CustomError: Error {
     case invalidURL
     case serializationError
     case invalidResponse
-    case genericError
+    case genericError(message: String)
+    case dbSaveError
 }
 
 public typealias SuccessHandler = (_ status: Bool, _ data: Data?) -> Void
@@ -32,4 +33,11 @@ extension Constants {
 //MARK:- View Controller Identifiers
 extension Constants {
     static let CityScreenVCIdentifier = "CityScreenVC"
+}
+
+//MARK: - CoreData
+extension Constants {
+    static let citiesEntityName = "Cities"
+    static let attrCityName = "cityName"
+    static let attrIsDefault = "isDefault"
 }
