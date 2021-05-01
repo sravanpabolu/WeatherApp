@@ -41,7 +41,8 @@ class CityScreenVC: BaseViewController {
                 self.lblWind.text = "Wind " + String(self.cityScreenVM.wind)
             }
             
-        } failureHandler: { (status, error) in
+        } failureHandler: { [weak self] (status, error) in
+            guard let self = self else { return }
             Logger.printMessage(message: error.localizedDescription)
             
             switch error {
@@ -55,42 +56,11 @@ class CityScreenVC: BaseViewController {
                     self.showAlert(title: "Invalid Location", message: "No valid data")
                 default:
                     self.showAlert(title: "Invalid Location", message: "Unable to fetch data")
-                    
             }
             
-            
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
-
-        
-        
-//
-//
-////        let smallSymbolImage = UIImage(systemName: "square.and.pencil")
-//
-//        cityScreenVM.updateClosure = { [weak self] in
-//            guard let self = self else { return }
-//
-//            DispatchQueue.main.async {
-//                self.lblCityName.text = name
-//                self.lblTemperature.text = String(self.cityScreenVM.temperature)
-//                self.lblTemperatureMin.text = String(self.cityScreenVM.temperatureMin)
-//                self.lblTemperatureMax.text = String(self.cityScreenVM.temperatureMax)
-//            }
-//        }
-//
-//        cityScreenVM.errorClosure = { [weak self] (error) in
-//            guard let self = self else { return }
-//
-////            DispatchQueue.main.async {
-//            print(error)
-//
-//
-////            }
-//        }
-//
-        
     }
-
-
 }
-

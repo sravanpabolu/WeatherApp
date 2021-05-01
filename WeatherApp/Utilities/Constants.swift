@@ -23,6 +23,7 @@ public typealias FailureHandler = (_ status: Bool, _ error: CustomError) -> Void
 enum Constants {
     private static let apiKey = "fae7190d7e6433ec3a45285ffcf55c86"
     static let UrlCurrentLocation = "http://api.openweathermap.org/data/2.5/weather?appid=" + Constants.apiKey + "&units=metric&q="
+    static let UrlHelp = "https://openweathermap.org/faq"
 }
 
 //MARK:- TableView, CollectionView constants
@@ -33,6 +34,7 @@ extension Constants {
 //MARK:- View Controller Identifiers
 extension Constants {
     static let CityScreenVCIdentifier = "CityScreenVC"
+    static let HelpScreenVCIdentifier = "HelpScreenVC"
 }
 
 //MARK: - CoreData

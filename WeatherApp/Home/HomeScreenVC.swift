@@ -33,8 +33,25 @@ class HomeScreenVC: UIViewController {
 //        for aCity in self.defaultCities {
 //            insertCity(name: aCity)
 //        }
+        let title = "Weather"
+        self.navigationItem.title = title
         
+        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings.png"), style: .plain, target: self, action: #selector(self.btnSettingsTapped))
+        let helpButton = UIBarButtonItem(image: UIImage(named: "help.png"), style: .plain, target: self, action: #selector(self.btnHelpTapped))
+        self.navigationItem.rightBarButtonItems = [helpButton, settingsButton]
+
         fetchCities()
+    }
+    
+    @objc private func btnSettingsTapped() {
+        print("Settings")
+    }
+    
+    @objc private func btnHelpTapped() {
+        print("Help")
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc: HelpScreenVC = storyboard.instantiateViewController(identifier: Constants.HelpScreenVCIdentifier) as HelpScreenVC
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func deleteCity(at index: Int) {
