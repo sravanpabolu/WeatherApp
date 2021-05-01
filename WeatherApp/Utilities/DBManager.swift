@@ -41,7 +41,7 @@ class DBManager {
 }
 
 extension DBManager {
-    func insertCity(name: String) throws {
+    func insertCity(name: String, isUserChoice: Bool) throws {
         let managedContext = self.persistentContainer.viewContext
         
         guard let entity = NSEntityDescription.entity(forEntityName: Constants.citiesEntityName, in: managedContext) else {
@@ -51,7 +51,7 @@ extension DBManager {
         let city = NSManagedObject(entity: entity, insertInto: managedContext)
         
         city.setValue(name, forKey: Constants.attrCityName)
-        city.setValue(false, forKeyPath: Constants.attrIsDefault)
+        city.setValue(isUserChoice, forKeyPath: Constants.attrIsDefault)
         
         do {
             try managedContext.save()

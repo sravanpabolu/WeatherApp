@@ -26,7 +26,7 @@ class HomeScreenVM {
     
     func insertCity(name: String) throws {
         do {
-            try DBManager.shared.insertCity(name: name)
+            try DBManager.shared.insertCity(name: name, isUserChoice: true)
         } catch {
             throw error
         }
