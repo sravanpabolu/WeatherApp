@@ -32,4 +32,7 @@ class HomeScreenVM {
         }
     }
     
+    func deleteCity(name: String) throws {
+        try DBManager.shared.deleteCity(name: name)
+    }
 }

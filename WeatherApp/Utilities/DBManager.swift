@@ -63,13 +63,26 @@ extension DBManager {
         }
     }
     
-    func deleteCity(name: String) {
-        //TODO:
+    func deleteCity(name: String) throws {
+        let managedContext = self.persistentContainer.viewContext
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: Constants.citiesEntityName)
+        fetchRequest.predicate = NSPredicate.init(format: "\(Constants.attrCityName) == %@", name)
+
+        do {
+            cities = try managedContext.fetch(fetchRequest)
+            for city in cities {
+                managedContext.delete(city)
+            }
+            try saveContext()
+        } catch let error as NSError {
+            Logger.printMessage(message: "Could not fetch. \(error), \(error.userInfo)", request: "Delete City")
+            throw CustomError.genericError(message: error.localizedDescription)
+        }
     }
     
     func getCities() throws -> [NSManagedObject] {
         let managedContext = self.persistentContainer.viewContext
-        
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: Constants.citiesEntityName)
         
@@ -77,7 +90,7 @@ extension DBManager {
             cities = try managedContext.fetch(fetchRequest)
             return cities
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            Logger.printMessage(message: "Could not fetch. \(error), \(error.userInfo)", request: "getCities")
             throw CustomError.genericError(message: error.localizedDescription)
         }
     }

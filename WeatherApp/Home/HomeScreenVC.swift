@@ -17,27 +17,55 @@ class HomeScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do {
-            try homeScreenVM.insertCity(name: "Paris")
-        } catch {
-            Logger.printMessage(message: error.localizedDescription, request: "DBManager Error")
-        }
-        
-        do {
-            try homeScreenVM.fetchCities()
-        } catch  {
-            Logger.printMessage(message: error.localizedDescription, request: "DBManager Fetch  Error")
-        }
-        
+        insertCity()
+        fetchCities()
+//        deleteCity()
+    
         DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 2) { [weak self] in
             guard let self = self else { return }
-            
+        
             Logger.printMessage(message: "\(self.homeScreenVM.cities)", request: "Avaialble cities")
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    private func deleteCity() {
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 2) { [weak self] in
+            guard let self = self else { return }
             
+            do {
+                try self.homeScreenVM.deleteCity(name: "Dubai")
+            } catch  {
+                Logger.printMessage(message: error.localizedDescription, request: "DBManager Fetch  Error")
+            }
+        }
+    }
+    
+    private func insertCity() {
+        do {
+            try homeScreenVM.insertCity(name: "Paris")
+            try homeScreenVM.insertCity(name: "Dubai")
+            try homeScreenVM.insertCity(name: "London")
+            try homeScreenVM.insertCity(name: "Delhi")
+            try homeScreenVM.insertCity(name: "Kolkota")
+            try homeScreenVM.insertCity(name: "Mumbai")
+            try homeScreenVM.insertCity(name: "Chennai")
+            try homeScreenVM.insertCity(name: "Hyderabad")
+            try homeScreenVM.insertCity(name: "Nellore")
+            try homeScreenVM.insertCity(name: "Kochi")
+        } catch {
+            Logger.printMessage(message: error.localizedDescription, request: "DBManager Error")
+        }
+    }
+    
+    private func fetchCities() {
+        do {
+            try homeScreenVM.fetchCities()
+        } catch  {
+            Logger.printMessage(message: error.localizedDescription, request: "DBManager Fetch  Error")
         }
     }
     
