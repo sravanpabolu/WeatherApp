@@ -55,8 +55,9 @@ class HomeScreenVC: BaseViewController {
     }
     
     @objc private func btnSettingsTapped() {
-        print("Settings")
-        self.showAlert(message: "Coming Soon")
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc: SettingsVC = storyboard.instantiateViewController(identifier: Constants.SettingsVCIdentifier) as SettingsVC
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func btnHelpTapped() {

@@ -4,7 +4,11 @@
         <attribute name="cityName" optional="YES" attributeType="String"/>
         <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="Settings" representedClassName="Settings" syncable="YES" codeGenerationType="class">
+        <attribute name="isMetric" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="Cities" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="Settings" positionX="-63" positionY="0" width="128" height="58"/>
     </elements>
 </model>

@@ -27,6 +27,9 @@
 		A0641A9C263D38EF00DBBBA5 /* HelpScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0641A9B263D38EF00DBBBA5 /* HelpScreenVC.swift */; };
 		A0641AA4263D3A6900DBBBA5 /* HomeScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0641AA3263D3A6900DBBBA5 /* HomeScreenVM.swift */; };
 		A0641AAC263D3F4700DBBBA5 /* CityScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0641AAB263D3F4700DBBBA5 /* CityScreenVM.swift */; };
+		A0A58151263EBC5C00F36A25 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A58150263EBC5C00F36A25 /* SettingsVC.swift */; };
+		A0A58159263EC50E00F36A25 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A58158263EC50E00F36A25 /* AppSettings.swift */; };
+		A0A5815E263ECD2600F36A25 /* SettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A5815D263ECD2600F36A25 /* SettingsVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		A0641A9B263D38EF00DBBBA5 /* HelpScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpScreenVC.swift; sourceTree = "<group>"; };
 		A0641AA3263D3A6900DBBBA5 /* HomeScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVM.swift; sourceTree = "<group>"; };
 		A0641AAB263D3F4700DBBBA5 /* CityScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityScreenVM.swift; sourceTree = "<group>"; };
+		A0A58150263EBC5C00F36A25 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		A0A58158263EC50E00F36A25 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		A0A5815D263ECD2600F36A25 /* SettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 		A0641A41263D28DB00DBBBA5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				A0A5814F263EBC4D00F36A25 /* Settings */,
 				A0200171263DEACE002ED080 /* AddLocation */,
 				A0339FAD263D72C5008849B4 /* Common */,
 				A0641A9A263D38E300DBBBA5 /* Help */,
@@ -182,6 +189,7 @@
 				A0641A7E263D2E7E00DBBBA5 /* Constants.swift */,
 				A0339FA8263D6FBA008849B4 /* Logger.swift */,
 				A0339FB9263D7DE2008849B4 /* DBManager.swift */,
+				A0A58158263EC50E00F36A25 /* AppSettings.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -218,6 +226,15 @@
 				A0641A9B263D38EF00DBBBA5 /* HelpScreenVC.swift */,
 			);
 			path = Help;
+			sourceTree = "<group>";
+		};
+		A0A5814F263EBC4D00F36A25 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A0A58150263EBC5C00F36A25 /* SettingsVC.swift */,
+				A0A5815D263ECD2600F36A25 /* SettingsVM.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,6 +372,7 @@
 				A0641A85263D375900DBBBA5 /* WeatherData.swift in Sources */,
 				A0200173263DEB36002ED080 /* AddLocationVC.swift in Sources */,
 				A0641A7A263D2E6C00DBBBA5 /* NetworkManager.swift in Sources */,
+				A0A58151263EBC5C00F36A25 /* SettingsVC.swift in Sources */,
 				A0641A43263D28DB00DBBBA5 /* AppDelegate.swift in Sources */,
 				A0641A45263D28DB00DBBBA5 /* SceneDelegate.swift in Sources */,
 				A0641A9C263D38EF00DBBBA5 /* HelpScreenVC.swift in Sources */,
@@ -365,6 +383,8 @@
 				A0641A7F263D2E7E00DBBBA5 /* Constants.swift in Sources */,
 				A0641A8F263D389E00DBBBA5 /* HomeScreenVC.swift in Sources */,
 				A0339FBA263D7DE2008849B4 /* DBManager.swift in Sources */,
+				A0A58159263EC50E00F36A25 /* AppSettings.swift in Sources */,
+				A0A5815E263ECD2600F36A25 /* SettingsVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

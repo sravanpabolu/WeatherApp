@@ -20,27 +20,35 @@ public enum CustomError: Error {
 public typealias SuccessHandler = (_ status: Bool, _ data: Data?) -> Void
 public typealias FailureHandler = (_ status: Bool, _ error: CustomError) -> Void
 
-enum Constants {
+public enum Constants {
     private static let apiKey = "fae7190d7e6433ec3a45285ffcf55c86"
-    static let UrlCurrentLocation = "http://api.openweathermap.org/data/2.5/weather?appid=" + Constants.apiKey + "&units=metric&q="
+    static let UrlCurrentLocation = "http://api.openweathermap.org/data/2.5/weather?appid=" + Constants.apiKey
     static let UrlHelp = "https://openweathermap.org/faq"
 }
 
+public enum Units {
+    case imperial, metric
+}
+
 //MARK:- TableView, CollectionView constants
-extension Constants {
+public extension Constants {
     static let HomeViewCellIdentifier = "HomeCell"
 }
 
 //MARK:- View Controller Identifiers
-extension Constants {
+public extension Constants {
     static let CityScreenVCIdentifier = "CityScreenVC"
     static let HelpScreenVCIdentifier = "HelpScreenVC"
     static let AddLocationVCIdentifier = "AddLocationVC"
+    static let SettingsVCIdentifier = "SettingsVC"
 }
 
 //MARK: - CoreData
-extension Constants {
+public extension Constants {
     static let citiesEntityName = "Cities"
     static let attrCityName = "cityName"
     static let attrIsDefault = "isDefault"
+    
+    static let entitySettings = "Settings"
+    static let attrIsMetric = "isMetric"
 }

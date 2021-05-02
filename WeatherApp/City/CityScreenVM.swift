@@ -36,7 +36,9 @@ class CityScreenVM {
     }
     
     func getCityWeatherData(for location: String, successHandler: @escaping SuccessHandler, failureHandler: @escaping FailureHandler) {
-        let url = Constants.UrlCurrentLocation + location
+        
+        let units = (AppSettings.shared.isMetric == .metric) ? "metric" : "imperial"
+        let url = Constants.UrlCurrentLocation + "&units=" + units + "&q=" + location
         
         NetworkManager().performNetworkRequest(url: url) { (status, data) in
             guard let data = data else {

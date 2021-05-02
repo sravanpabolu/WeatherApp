@@ -212,6 +212,52 @@
             </objects>
             <point key="canvasLocation" x="3010" y="106"/>
         </scene>
+        <!--SettingsVC-->
+        <scene sceneID="Gdl-WZ-ie4">
+            <objects>
+                <viewController storyboardIdentifier="SettingsVC" id="a1I-Av-bkh" customClass="SettingsVC" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8ha-C8-O14">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="180" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-Ka-zFA">
+                                <rect key="frame" x="20" y="64" width="374" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Units" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtL-MK-gmj">
+                                        <rect key="frame" x="0.0" y="0.0" width="39.5" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-tt-Wsy">
+                                        <rect key="frame" x="219.5" y="0.0" width="154.5" height="32"/>
+                                        <segments>
+                                            <segment title="Metric"/>
+                                            <segment title="Imperial"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="unitsChanged:" destination="a1I-Av-bkh" eventType="valueChanged" id="MFL-MQ-goT"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fUx-h8-10h"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fUx-h8-10h" firstAttribute="trailing" secondItem="LWq-Ka-zFA" secondAttribute="trailing" constant="20" id="EIJ-EN-s9K"/>
+                            <constraint firstItem="LWq-Ka-zFA" firstAttribute="top" secondItem="fUx-h8-10h" secondAttribute="top" constant="20" id="irH-e4-Ap9"/>
+                            <constraint firstItem="LWq-Ka-zFA" firstAttribute="leading" secondItem="fUx-h8-10h" secondAttribute="leading" constant="20" id="jFI-UP-0wG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="segmentUnits" destination="ZH2-tt-Wsy" id="eiA-FP-aFh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xpp-F1-x2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3718.840579710145" y="105.80357142857143"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="uQM-8T-gNB">
             <objects>

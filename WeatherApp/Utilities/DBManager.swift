@@ -15,6 +15,7 @@ class DBManager {
     static let shared = DBManager()
     
     var cities: [NSManagedObject] = []
+    var settings: [NSManagedObject] = []
     
     // MARK: - Core Data Properties/methods
     lazy var persistentContainer: NSPersistentContainer = {
@@ -91,6 +92,42 @@ extension DBManager {
             return cities
         } catch let error as NSError {
             Logger.printMessage(message: "Could not fetch. \(error), \(error.userInfo)", request: "getCities")
+            throw CustomError.genericError(message: error.localizedDescription)
+        }
+    }
+}
+
+extension DBManager {
+    func updateUnitSettings(isMetric: Units) throws {
+        let managedContext = self.persistentContainer.viewContext
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: Constants.entitySettings, in: managedContext) else {
+            throw CustomError.genericError(message: "Unable to fetch Entity")
+        }
+        
+        let setting = (isMetric == .metric) ? true : false
+        let settings = NSManagedObject(entity: entity, insertInto: managedContext)
+        settings.setValue(setting, forKey: Constants.attrIsMetric)
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            let errorMessage = "Could not save. \(error), \(error.userInfo)"
+            Logger.printMessage(message: errorMessage, request: "DB Save Error")
+            throw CustomError.dbSaveError
+        }
+    }
+    
+    func getSettings() throws -> [NSManagedObject] {
+        let managedContext = self.persistentContainer.viewContext
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: Constants.entitySettings)
+        
+        do {
+            settings = try managedContext.fetch(fetchRequest)
+            return settings
+        } catch let error as NSError {
+            Logger.printMessage(message: "Could not fetch. \(error), \(error.userInfo)", request: "Get Settings")
             throw CustomError.genericError(message: error.localizedDescription)
         }
     }
