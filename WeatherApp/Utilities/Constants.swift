@@ -35,6 +35,7 @@ extension Constants {
 extension Constants {
     static let CityScreenVCIdentifier = "CityScreenVC"
     static let HelpScreenVCIdentifier = "HelpScreenVC"
+    static let AddLocationVCIdentifier = "AddLocationVC"
 }
 
 //MARK: - CoreData

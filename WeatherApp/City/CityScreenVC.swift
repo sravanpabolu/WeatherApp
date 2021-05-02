@@ -58,9 +58,9 @@ class CityScreenVC: BaseViewController {
                     self.showAlert(title: "Invalid Location", message: "Unable to fetch data")
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
                 self.navigationController?.popViewController(animated: true)
-            }
+            })
         }
     }
 }

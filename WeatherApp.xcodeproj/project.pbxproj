@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0200173263DEB36002ED080 /* AddLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0200172263DEB36002ED080 /* AddLocationVC.swift */; };
 		A0339FA9263D6FBA008849B4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0339FA8263D6FBA008849B4 /* Logger.swift */; };
 		A0339FAF263D72D3008849B4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0339FAE263D72D3008849B4 /* BaseViewController.swift */; };
 		A0339FBA263D7DE2008849B4 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0339FB9263D7DE2008849B4 /* DBManager.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A0200172263DEB36002ED080 /* AddLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationVC.swift; sourceTree = "<group>"; };
 		A0339FA8263D6FBA008849B4 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A0339FAE263D72D3008849B4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A0339FB9263D7DE2008849B4 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A0200171263DEACE002ED080 /* AddLocation */ = {
+			isa = PBXGroup;
+			children = (
+				A0200172263DEB36002ED080 /* AddLocationVC.swift */,
+			);
+			path = AddLocation;
+			sourceTree = "<group>";
+		};
 		A0339FAD263D72C5008849B4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 		A0641A41263D28DB00DBBBA5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				A0200171263DEACE002ED080 /* AddLocation */,
 				A0339FAD263D72C5008849B4 /* Common */,
 				A0641A9A263D38E300DBBBA5 /* Help */,
 				A0641A99263D38D600DBBBA5 /* City */,
@@ -342,6 +353,7 @@
 				A0641A4D263D28DB00DBBBA5 /* WeatherApp.xcdatamodeld in Sources */,
 				A0641A47263D28DB00DBBBA5 /* CityScreenVC.swift in Sources */,
 				A0641A85263D375900DBBBA5 /* WeatherData.swift in Sources */,
+				A0200173263DEB36002ED080 /* AddLocationVC.swift in Sources */,
 				A0641A7A263D2E6C00DBBBA5 /* NetworkManager.swift in Sources */,
 				A0641A43263D28DB00DBBBA5 /* AppDelegate.swift in Sources */,
 				A0641A45263D28DB00DBBBA5 /* SceneDelegate.swift in Sources */,

@@ -25,6 +25,7 @@ class HomeScreenVM {
     }
     
     func insertCity(name: String) throws {
+        cities.append(name)
         do {
             try DBManager.shared.insertCity(name: name, isUserChoice: true)
         } catch {
@@ -32,7 +33,8 @@ class HomeScreenVM {
         }
     }
     
-    func deleteCity(name: String) throws {
-        try DBManager.shared.deleteCity(name: name)
+    func deleteCity(at index: Int) throws {
+        cities.remove(at: index)
+        try DBManager.shared.deleteCity(name: cities[index])
     }
 }

@@ -183,6 +183,35 @@
             </objects>
             <point key="canvasLocation" x="2296" y="102"/>
         </scene>
+        <!--Add LocationVC-->
+        <scene sceneID="Pzt-8Q-wHj">
+            <objects>
+                <viewController storyboardIdentifier="AddLocationVC" id="oP0-ih-RmE" customClass="AddLocationVC" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QbX-SI-nN3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1R6-IU-Sf9">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9jh-Tf-fYw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1R6-IU-Sf9" firstAttribute="top" secondItem="9jh-Tf-fYw" secondAttribute="top" id="Rvm-Sz-iNo"/>
+                            <constraint firstItem="9jh-Tf-fYw" firstAttribute="trailing" secondItem="1R6-IU-Sf9" secondAttribute="trailing" id="fpO-1Q-pEG"/>
+                            <constraint firstItem="9jh-Tf-fYw" firstAttribute="bottom" secondItem="1R6-IU-Sf9" secondAttribute="bottom" id="j74-WC-AC9"/>
+                            <constraint firstItem="1R6-IU-Sf9" firstAttribute="leading" secondItem="9jh-Tf-fYw" secondAttribute="leading" id="zsc-c5-Geb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="1R6-IU-Sf9" id="AfS-wa-rQC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kel-sa-LOa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3010" y="106"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="uQM-8T-gNB">
             <objects>

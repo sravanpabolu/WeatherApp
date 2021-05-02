@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeScreenVC: UIViewController {
+class HomeScreenVC: BaseViewController {
     //MARK:- IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,7 +18,7 @@ class HomeScreenVC: UIViewController {
         "Dubai",
         "London",
         "Delhi",
-        "Kolkota",
+        "Kolkata",
         "Mumbai",
         "Chennai",
         "Hyderabad",
@@ -33,18 +33,30 @@ class HomeScreenVC: UIViewController {
 //        for aCity in self.defaultCities {
 //            insertCity(name: aCity)
 //        }
+        
         let title = "Weather"
         self.navigationItem.title = title
         
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(btnAddTapped))
         let settingsButton = UIBarButtonItem(image: UIImage(named: "settings.png"), style: .plain, target: self, action: #selector(self.btnSettingsTapped))
         let helpButton = UIBarButtonItem(image: UIImage(named: "help.png"), style: .plain, target: self, action: #selector(self.btnHelpTapped))
+        
+        self.navigationItem.leftBarButtonItem = addButton
         self.navigationItem.rightBarButtonItems = [helpButton, settingsButton]
 
         fetchCities()
     }
     
+    @objc private func btnAddTapped() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc: AddLocationVC = storyboard.instantiateViewController(identifier: Constants.AddLocationVCIdentifier) as AddLocationVC
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc private func btnSettingsTapped() {
         print("Settings")
+        self.showAlert(message: "Coming Soon")
     }
     
     @objc private func btnHelpTapped() {
@@ -56,8 +68,7 @@ class HomeScreenVC: UIViewController {
     
     private func deleteCity(at index: Int) {
         do {
-            try homeScreenVM.deleteCity(name: homeScreenVM.cities[index])
-            homeScreenVM.cities.remove(at: index)
+            try homeScreenVM.deleteCity(at: index)
         } catch  {
             Logger.printMessage(message: error.localizedDescription, request: "DBManager delete Error")
         }
@@ -121,5 +132,12 @@ extension HomeScreenVC: UITableViewDelegate {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
             deleteCity(at: indexPath.row)
         }
+    }
+}
+
+extension HomeScreenVC: AddLocationVCDelegate {
+    func didSelect(location: String) {
+        Logger.printMessage(message: location, request: "Selected location")
+        insertCity(name: location)
     }
 }
