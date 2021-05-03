@@ -29,7 +29,6 @@ class WeatherAppUITests: XCTestCase {
         app.launch()
         app.tables.staticTexts["Wangdue Phodrang"].tap()
         app.alerts["Invalid Location"].scrollViews.otherElements.buttons["OK"].tap()
-        
     }
 
     func testLaunchPerformance() throws {
