@@ -19,14 +19,16 @@ class CityScreenVC: BaseViewController {
     @IBOutlet weak var lblFeelsLike: UILabel!
     
     //MARK:- Vars
-    var cityName: String?
+    var cityName: String = ""
     let cityScreenVM = CityScreenVM()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let name = cityName ?? ""
-        
+        getCityWeatherData(cityName)
+    }
+
+    private func getCityWeatherData(_ name: String) {
         cityScreenVM.getCityWeatherData(for: name) {  [weak self] (status, weatherData) in
             
             guard let self = self else { return }

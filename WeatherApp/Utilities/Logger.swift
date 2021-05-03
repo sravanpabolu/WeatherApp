@@ -8,11 +8,11 @@
 import Foundation
 
 struct Logger {
-    static func printMessage(message: String, request: String = "Random Request") {
+    static func printMessage(message: Any, request: String = "Random Request") {
         print(">>>>>>>>>>>>>>>>>>>>>")
         print(request)
         print("MESSAGE:")
-        print(message)
+        print(String(describing: message))
         print("<<<<<<<<<<<<<<<<<<<<<")
     }
 }

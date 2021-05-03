@@ -16,6 +16,10 @@ class SettingsVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getCurrentSettings()
+    }
+    
+    private func getCurrentSettings() {
         do {
             try settingsVM.getCurrentSettings()
             

@@ -20,10 +20,15 @@ class NetworkManager {
         
         Logger.printMessage(message: "\(url)", request: "URL Request")
         
-        session.dataTask(with: url) { (data, _, error) in
+        session.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 Logger.printMessage(message: "No Data", request: "API Error")
                 failureHandler(false, .apiError)
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                failureHandler(false, .invalidResponse)
+                return
             }
             
             guard let data = data else {
