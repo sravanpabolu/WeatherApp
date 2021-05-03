@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A004EE7A263EFBCD00BBD5AA /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004EE79263EFBCD00BBD5AA /* LoggerTests.swift */; };
+		A004EE7F263EFDE400BBD5AA /* CityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004EE7E263EFDE400BBD5AA /* CityTests.swift */; };
 		A0200173263DEB36002ED080 /* AddLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0200172263DEB36002ED080 /* AddLocationVC.swift */; };
 		A0339FA9263D6FBA008849B4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0339FA8263D6FBA008849B4 /* Logger.swift */; };
 		A0339FAF263D72D3008849B4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0339FAE263D72D3008849B4 /* BaseViewController.swift */; };
@@ -30,6 +32,13 @@
 		A0A58151263EBC5C00F36A25 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A58150263EBC5C00F36A25 /* SettingsVC.swift */; };
 		A0A58159263EC50E00F36A25 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A58158263EC50E00F36A25 /* AppSettings.swift */; };
 		A0A5815E263ECD2600F36A25 /* SettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A5815D263ECD2600F36A25 /* SettingsVM.swift */; };
+		A0B02012263FC1CB004588A7 /* HomeScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B02011263FC1CB004588A7 /* HomeScreenTests.swift */; };
+		A0B0201A263FDAD9004588A7 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B02019263FDAD9004588A7 /* NetworkManagerTests.swift */; };
+		A0B0201F263FE0DB004588A7 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B0201E263FE0DB004588A7 /* SettingsTests.swift */; };
+		A0B02024263FE897004588A7 /* SettingsVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B02023263FE897004588A7 /* SettingsVCTests.swift */; };
+		A0B02029263FE9DF004588A7 /* HomeScreenVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B02028263FE9DF004588A7 /* HomeScreenVCTests.swift */; };
+		A0B0202E263FEDA8004588A7 /* HelpScreenVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B0202D263FEDA8004588A7 /* HelpScreenVCTests.swift */; };
+		A0B02033263FEEE9004588A7 /* CityScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B02032263FEEE9004588A7 /* CityScreenTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A004EE79263EFBCD00BBD5AA /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
+		A004EE7E263EFDE400BBD5AA /* CityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTests.swift; sourceTree = "<group>"; };
 		A0200172263DEB36002ED080 /* AddLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationVC.swift; sourceTree = "<group>"; };
 		A0339FA8263D6FBA008849B4 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A0339FAE263D72D3008849B4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +90,13 @@
 		A0A58150263EBC5C00F36A25 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		A0A58158263EC50E00F36A25 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		A0A5815D263ECD2600F36A25 /* SettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVM.swift; sourceTree = "<group>"; };
+		A0B02011263FC1CB004588A7 /* HomeScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTests.swift; sourceTree = "<group>"; };
+		A0B02019263FDAD9004588A7 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		A0B0201E263FE0DB004588A7 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
+		A0B02023263FE897004588A7 /* SettingsVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVCTests.swift; sourceTree = "<group>"; };
+		A0B02028263FE9DF004588A7 /* HomeScreenVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVCTests.swift; sourceTree = "<group>"; };
+		A0B0202D263FEDA8004588A7 /* HelpScreenVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpScreenVCTests.swift; sourceTree = "<group>"; };
+		A0B02032263FEEE9004588A7 /* CityScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityScreenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +187,11 @@
 			children = (
 				A0641A5C263D28DC00DBBBA5 /* WeatherAppTests.swift */,
 				A0641A5E263D28DC00DBBBA5 /* Info.plist */,
+				A004EE79263EFBCD00BBD5AA /* LoggerTests.swift */,
+				A004EE7E263EFDE400BBD5AA /* CityTests.swift */,
+				A0B02011263FC1CB004588A7 /* HomeScreenTests.swift */,
+				A0B02019263FDAD9004588A7 /* NetworkManagerTests.swift */,
+				A0B0201E263FE0DB004588A7 /* SettingsTests.swift */,
 			);
 			path = WeatherAppTests;
 			sourceTree = "<group>";
@@ -178,6 +201,10 @@
 			children = (
 				A0641A67263D28DC00DBBBA5 /* WeatherAppUITests.swift */,
 				A0641A69263D28DC00DBBBA5 /* Info.plist */,
+				A0B02023263FE897004588A7 /* SettingsVCTests.swift */,
+				A0B02028263FE9DF004588A7 /* HomeScreenVCTests.swift */,
+				A0B0202D263FEDA8004588A7 /* HelpScreenVCTests.swift */,
+				A0B02032263FEEE9004588A7 /* CityScreenTests.swift */,
 			);
 			path = WeatherAppUITests;
 			sourceTree = "<group>";
@@ -392,7 +419,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0B0201F263FE0DB004588A7 /* SettingsTests.swift in Sources */,
+				A0B0201A263FDAD9004588A7 /* NetworkManagerTests.swift in Sources */,
+				A0B02012263FC1CB004588A7 /* HomeScreenTests.swift in Sources */,
 				A0641A5D263D28DC00DBBBA5 /* WeatherAppTests.swift in Sources */,
+				A004EE7F263EFDE400BBD5AA /* CityTests.swift in Sources */,
+				A004EE7A263EFBCD00BBD5AA /* LoggerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +433,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0641A68263D28DC00DBBBA5 /* WeatherAppUITests.swift in Sources */,
+				A0B02029263FE9DF004588A7 /* HomeScreenVCTests.swift in Sources */,
+				A0B02024263FE897004588A7 /* SettingsVCTests.swift in Sources */,
+				A0B0202E263FEDA8004588A7 /* HelpScreenVCTests.swift in Sources */,
+				A0B02033263FEEE9004588A7 /* CityScreenTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

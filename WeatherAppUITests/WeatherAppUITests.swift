@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import WeatherApp
 
 class WeatherAppUITests: XCTestCase {
 
@@ -22,13 +23,13 @@ class WeatherAppUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testAlert() {
+        //Make sure you have "Wangdue Phodrang" in the table
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        app.tables.staticTexts["Wangdue Phodrang"].tap()
+        app.alerts["Invalid Location"].scrollViews.otherElements.buttons["OK"].tap()
+        
     }
 
     func testLaunchPerformance() throws {
