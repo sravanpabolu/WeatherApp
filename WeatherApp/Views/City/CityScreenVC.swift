@@ -29,11 +29,15 @@ class CityScreenVC: BaseViewController {
     }
 
     private func getCityWeatherData(_ name: String) {
+        LoadingIndicator.shared.showLoader(on: self.view)
+        
         cityScreenVM.getCityWeatherData(for: name) {  [weak self] (status, weatherData) in
             
             guard let self = self else { return }
             
             DispatchQueue.main.async {
+                LoadingIndicator.shared.dismissLoader()
+                
                 self.lblCityName.text = name
                 self.lblTemperature.text = String(self.cityScreenVM.temperature) + "°"
                 self.lblTemperatureMin.text = "⬇️" +  String(self.cityScreenVM.temperatureMin) + "°"
@@ -45,6 +49,8 @@ class CityScreenVC: BaseViewController {
             
         } failureHandler: { [weak self] (status, error) in
             guard let self = self else { return }
+            LoadingIndicator.shared.dismissLoader()
+            
             Logger.printMessage(message: error.localizedDescription)
             
             switch error {

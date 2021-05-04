@@ -105,6 +105,7 @@ class HomeScreenVC: BaseViewController {
     }
     
     private func fetchCities() {
+        LoadingIndicator.shared.showLoader(on: self.view)
         do {
             try homeScreenVM.fetchCities()
         } catch  {
@@ -113,6 +114,7 @@ class HomeScreenVC: BaseViewController {
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            LoadingIndicator.shared.dismissLoader()
             self.tableView.reloadData()
         }
     }
