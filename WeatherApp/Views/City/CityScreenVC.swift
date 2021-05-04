@@ -19,19 +19,26 @@ class CityScreenVC: BaseViewController {
     @IBOutlet weak var lblFeelsLike: UILabel!
     
     //MARK:- Vars
-    var cityName: String = ""
+    var location: BookmarkedLocation?
     let cityScreenVM = CityScreenVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getCityWeatherData(cityName)
+        guard let cityname = location?.name else {
+            return
+        }
+        getCityWeatherData(cityname)
     }
 
     private func getCityWeatherData(_ name: String) {
         LoadingIndicator.shared.showLoader(on: self.view)
         
-        cityScreenVM.getCityWeatherData(for: name) {  [weak self] (status, weatherData) in
+        guard let location = location else {
+            return
+        }
+        
+        cityScreenVM.getCityWeatherData(for: location) {  [weak self] (status, weatherData) in
             
             guard let self = self else { return }
             

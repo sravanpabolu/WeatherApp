@@ -27,23 +27,30 @@ class LoadingIndicator: UIView {
     }
     
     func showLoader(on view: UIView) {
-        view.addSubview(self)
-        self.addSubview(loader)
-        
         Logger.printMessage(message: "SHOW")
         
-        self.loader.centerXAnchor(equalTo: view.centerXAnchor)
-        self.loader.centerYAnchor(equalTo: view.centerYAnchor)
-        self.loader.heightAnchor(equalTo: 64)
-        self.loader.widthAnchor(equalTo: 64)
+        Queue.main {[weak self] in
+            guard let self = self else { return }
+            
+            view.addSubview(self)
+            self.addSubview(self.loader)
+            
+            self.loader.centerXAnchor(equalTo: view.centerXAnchor)
+            self.loader.centerYAnchor(equalTo: view.centerYAnchor)
+            self.loader.heightAnchor(equalTo: 64)
+            self.loader.widthAnchor(equalTo: 64)
+        }
     }
     
     func dismissLoader() {
         Logger.printMessage(message: "Hide")
         
-        loader.stopAnimating()
-        loader.removeFromSuperview()
-        self.removeFromSuperview()
+        Queue.main { [weak self] in
+            guard let self = self else { return }
+            self.loader.stopAnimating()
+            self.loader.removeFromSuperview()
+            self.removeFromSuperview()
+        }
     }
     
 }

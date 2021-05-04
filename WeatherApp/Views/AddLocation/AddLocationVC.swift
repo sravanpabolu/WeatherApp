@@ -9,14 +9,14 @@ import UIKit
 import MapKit
 
 protocol AddLocationVCDelegate {
-    func didSelect(location: String)
+    func didSelect(location: BookmarkedLocation)
 }
 
 class AddLocationVC: BaseViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
-    var selectedLocation: String?
+    var selectedLocation: BookmarkedLocation?
     var delegate: AddLocationVCDelegate?
         
     override func viewDidLoad() {
@@ -35,7 +35,6 @@ class AddLocationVC: BaseViewController {
     
     @objc private func btnDoneTapped() {
         guard let location = selectedLocation,
-              !location.isEmpty,
               let delegate = delegate else { return }
         
         delegate.didSelect(location: location)
@@ -46,9 +45,10 @@ class AddLocationVC: BaseViewController {
         let locationInView = sender.location(in: mapView)
         let locationOnMap = mapView.convert(locationInView, toCoordinateFrom: mapView)
         
-//        Logger.printMessage(message: "\(locationOnMap)", request: "LAT, LONG")
-        
-        addAnnotation(location: locationOnMap)
+        Queue.main { [weak self] in
+            guard let self = self else { return }
+            self.addAnnotation(location: locationOnMap)
+        }
         
         getPlace(from: locationOnMap, completion: { [weak self] (locationName) in
             guard let self = self else { return }
@@ -73,30 +73,32 @@ class AddLocationVC: BaseViewController {
         locationManager.requestLocation()
     }
     
-    private func getPlace(from location: CLLocationCoordinate2D, completion: @escaping ((_ locationName: String) -> Void)) {
+    private func getPlace(from location: CLLocationCoordinate2D, completion: @escaping ((_ locationName: BookmarkedLocation?) -> Void)) {
         let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        let geoLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
         
-        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+        geoCoder.reverseGeocodeLocation(geoLocation) { (placemarks, error) in
+            if error != nil {
+                completion(nil)
+                return
+            }
             
-            // Place details
-            var placeMark: CLPlacemark!
-            placeMark = placemarks?[0]
-            
-            let placeName = placeMark.name ?? ""
-//            Logger.printMessage(message: name, request: "LOCATION:")
-            completion(placeName)
-        })
+            if let placeMark = placemarks?.first {
+                var place = BookmarkedLocation()
+                place.name = placeMark.name
+                place.locality = placeMark.locality
+                place.adminArea = placeMark.administrativeArea
+                place.subLocality = placeMark.subLocality
+                place.lat = placeMark.location?.coordinate.latitude
+                place.long = placeMark.location?.coordinate.longitude
+                
+                completion(place)
+            }
+        }
     }
 }
 
 extension AddLocationVC: CLLocationManagerDelegate {
-//    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-//        if status == .authorizedWhenInUse {
-//            locationManager.requestLocation()
-//        }
-//    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             print("location:: \(location)")
@@ -122,18 +124,10 @@ extension AddLocationVC: MKMapViewDelegate {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
 //            pinView?.canShowCallout = true
 //            pinView?.rightCalloutAccessoryView = UIButton(type: .infoDark)
-//            pinView?.pinTintColor = UIColor.black
+            pinView?.pinTintColor = UIColor.blue
         } else {
             pinView?.annotation = annotation
         }
         return pinView
     }
-    
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        if control == view.rightCalloutAccessoryView {
-//            if let doSomething = view.annotation?.title {
-//                print("Accessory View Selected")
-//            }
-//        }
-//    }
 }

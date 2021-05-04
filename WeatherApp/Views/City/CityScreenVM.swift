@@ -35,10 +35,15 @@ class CityScreenVM {
         return cityWeatherData?.weather?.first?.weatherDescription ?? ""
     }
     
-    func getCityWeatherData(for location: String, successHandler: @escaping SuccessHandler, failureHandler: @escaping FailureHandler) {
+    func getCityWeatherData(for location: BookmarkedLocation, successHandler: @escaping SuccessHandler, failureHandler: @escaping FailureHandler) {
         
         let units = (AppSettings.shared.isMetric == .metric) ? "metric" : "imperial"
-        let url = Constants.UrlCurrentLocation + "&units=" + units + "&q=" + location
+        let lat = location.lat ?? 0.0
+        let long = location.long ?? 0.0
+        
+        let url = Constants.urlLatLong + "&units=\(units)&lat=\(lat)&lon=\(long)"
+        
+        Logger.printMessage(message: url, request: "URL")
         
         NetworkManager().performNetworkRequest(url: url) { (status, data) in
             guard let data = data else {

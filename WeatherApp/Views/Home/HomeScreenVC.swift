@@ -91,9 +91,9 @@ class HomeScreenVC: BaseViewController {
         }
     }
     
-    private func insertCity(name: String) {
+    private func insertCity(location: BookmarkedLocation) {
         do {
-            try self.homeScreenVM.insertCity(name: name)
+            try self.homeScreenVM.insertCity(location: location)
         } catch {
             Logger.printMessage(message: error.localizedDescription, request: "DBManager Insertion Error")
         }
@@ -126,9 +126,10 @@ extension HomeScreenVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.HomeViewCellIdentifier) else { return UITableViewCell() }
+        guard let cell: BookmarkedCityCell = tableView.dequeueReusableCell(withIdentifier: Constants.BookmarkedCityCellIdentifier) as? BookmarkedCityCell else { return UITableViewCell() }
         
-        cell.textLabel?.text = homeScreenVM.cities[indexPath.row]
+        cell.title.text = homeScreenVM.cities[indexPath.row].name
+        cell.subTitle.text = homeScreenVM.cities[indexPath.row].locality
         
         return cell
     }
@@ -138,7 +139,9 @@ extension HomeScreenVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc: CityScreenVC = storyboard.instantiateViewController(identifier: Constants.CityScreenVCIdentifier) as CityScreenVC
-        vc.cityName = homeScreenVM.cities[indexPath.row]
+        
+        let someLocation = homeScreenVM.cities[indexPath.row]
+        vc.location = someLocation
         navigationController?.pushViewController(vc, animated: true)
     }
         
@@ -150,8 +153,16 @@ extension HomeScreenVC: UITableViewDelegate {
 }
 
 extension HomeScreenVC: AddLocationVCDelegate {
-    func didSelect(location: String) {
+    func didSelect(location: BookmarkedLocation) {
         Logger.printMessage(message: location, request: "Selected location")
-        insertCity(name: location)
+        guard let name = location.name,
+              let locality = location.locality,
+              !name.isEmpty,
+              !locality.isEmpty else {
+            self.showAlert(title: Constants.AlertConstants.titleError,
+                           message: Constants.AlertConstants.msgInvalidLocation)
+            return
+        }
+        insertCity(location: location)
     }
 }
