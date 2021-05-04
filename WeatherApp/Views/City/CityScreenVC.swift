@@ -30,7 +30,7 @@ class CityScreenVC: BaseViewController {
         }
         getCityWeatherData(cityname)
     }
-
+    
     private func getCityWeatherData(_ name: String) {
         LoadingIndicator.shared.showLoader(on: self.view)
         
@@ -38,44 +38,44 @@ class CityScreenVC: BaseViewController {
             return
         }
         
-        cityScreenVM.getCityWeatherData(for: location) {  [weak self] (status, weatherData) in
-            
+        cityScreenVM.getCityWeatherData(for: location) { [weak self] (result) in
             guard let self = self else { return }
             
-            DispatchQueue.main.async {
+            Queue.main {
                 LoadingIndicator.shared.dismissLoader()
-                
-                self.lblCityName.text = name
-                self.lblTemperature.text = String(self.cityScreenVM.temperature) + "°"
-                self.lblTemperatureMin.text = "⬇️" +  String(self.cityScreenVM.temperatureMin) + "°"
-                self.lblTemperatureMax.text = "⬆️" +  String(self.cityScreenVM.temperatureMax) + "°"
-                self.lblDescription.text = self.cityScreenVM.description
-                self.lblFeelsLike.text = "Feels Like " + String(self.cityScreenVM.feelsLike)
-                self.lblWind.text = "Wind " + String(self.cityScreenVM.wind)
             }
             
-        } failureHandler: { [weak self] (status, error) in
-            guard let self = self else { return }
-            LoadingIndicator.shared.dismissLoader()
-            
-            Logger.printMessage(message: error.localizedDescription)
-            
-            switch error {
-                case .apiError:
-                    self.showAlert(title: "Invalid Location", message: "Unable to fetch data")
-                case .genericError:
-                    self.showAlert(title: "Invalid Location", message: "Some unknown error")
-                case .invalidResponse:
-                    self.showAlert(title: "Invalid Location", message: "Invalid response")
-                case .noData:
-                    self.showAlert(title: "Invalid Location", message: "No valid data")
-                default:
-                    self.showAlert(title: "Invalid Location", message: "Unable to fetch data")
+            switch result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        self.lblCityName.text = name
+                        self.lblTemperature.text = String(self.cityScreenVM.temperature) + "°"
+                        self.lblTemperatureMin.text = "⬇️" +  String(self.cityScreenVM.temperatureMin) + "°"
+                        self.lblTemperatureMax.text = "⬆️" +  String(self.cityScreenVM.temperatureMax) + "°"
+                        self.lblDescription.text = self.cityScreenVM.description
+                        self.lblFeelsLike.text = "Feels Like " + String(self.cityScreenVM.feelsLike)
+                        self.lblWind.text = "Wind " + String(self.cityScreenVM.wind)
+                    }
+                case .failure(let error):
+                    Logger.printMessage(message: error.localizedDescription)
+                    
+                    switch error {
+                        case .apiError:
+                            self.showAlert(title: "Invalid Location", message: "Unable to fetch data")
+                        case .genericError:
+                            self.showAlert(title: "Invalid Location", message: "Some unknown error")
+                        case .invalidResponse:
+                            self.showAlert(title: "Invalid Location", message: "Invalid response")
+                        case .noData:
+                            self.showAlert(title: "Invalid Location", message: "No valid data")
+                        default:
+                            self.showAlert(title: "Invalid Location", message: "Unable to fetch data")
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                        self.navigationController?.popViewController(animated: true)
+                    })
             }
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-                self.navigationController?.popViewController(animated: true)
-            })
         }
     }
 }

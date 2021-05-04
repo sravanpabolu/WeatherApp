@@ -12,11 +12,19 @@ class NetworkManagerTests: XCTestCase {
 
     func testInvalidURL() throws {
         let invalidURL = "this is an url"
-        NetworkManager().performNetworkRequest(url: invalidURL) { (status, data) in
-            XCTAssertFalse(status)
-        } failureHandler: { (status, error) in
-            XCTAssertFalse(status)
+        let someExpectation = expectation(description: "Fetch City Weather Data")
+        
+        NetworkManager().performNetworkRequest(url: invalidURL) { (result) in
+            someExpectation.fulfill()
+            
+            switch result {
+                case .success(let data):
+                    XCTAssertNotNil(data)
+                case .failure(let error):
+                    XCTAssertNotNil(error)
+            }
         }
-
+        
+        waitForExpectations(timeout: 5, handler: nil)
     }
 }

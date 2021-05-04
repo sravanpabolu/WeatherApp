@@ -29,43 +29,34 @@ class CityTests: XCTestCase {
     func testGetCitySuccessData() {
         let someExpectation = expectation(description: "Fetch City Weather Data")
         
-        var status = false
-        
-        cityScreenVM.getCityWeatherData(for: bangalore) { (responseStatus, _) in
-            
-            status = responseStatus
-            
+        cityScreenVM.getCityWeatherData(for: bangalore) { (result) in
             someExpectation.fulfill()
             
-        } failureHandler: { (status, error) in
-            XCTAssertFalse(status)
-            XCTAssertNotNil(error)
+            switch result {
+                case .success(let data):
+                    XCTAssertNotNil(data)
+                case .failure(let error):
+                    XCTAssertNotNil(error)
+            }
         }
         
         waitForExpectations(timeout: 5, handler: nil)
-        
-        XCTAssertTrue(status)
     }
     
     func testGetCityInvalidData() {
         let someExpectation = expectation(description: "Fetch City Weather Data")
         
-        var status = false
-        
-        cityScreenVM.getCityWeatherData(for: invalidLocation) { (responseStatus, _) in
-            
-            status = responseStatus
-            
+        cityScreenVM.getCityWeatherData(for: invalidLocation) { (result) in
             someExpectation.fulfill()
             
-        } failureHandler: { (status, error) in
-            someExpectation.fulfill()
-            XCTAssertFalse(status)
-            XCTAssertNotNil(error)
+            switch result {
+                case .success(let data):
+                    XCTAssertNotNil(data)
+                case .failure(let error):
+                    XCTAssertNotNil(error)
+            }
         }
         
         waitForExpectations(timeout: 5, handler: nil)
-        
-        XCTAssertFalse(status)
     }
 }

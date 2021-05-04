@@ -8,10 +8,10 @@
 import Foundation
 
 class NetworkManager {
-    func performNetworkRequest(url: String, successHandler: @escaping SuccessHandler, failureHandler: @escaping FailureHandler) {
+    func performNetworkRequest(url: String, completion: @escaping (Result<Data, CustomError>) -> Void) {
         
         guard let url = URL(string: url) else {
-            failureHandler(false, .invalidURL)
+            completion(.failure(.invalidURL))
             return
         }
         
@@ -23,21 +23,21 @@ class NetworkManager {
         session.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 Logger.printMessage(message: "No Data", request: "API Error")
-                failureHandler(false, .apiError)
+                completion(.failure(.apiError))
             }
             
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                failureHandler(false, .invalidResponse)
+                completion(.failure(.invalidResponse))
                 return
             }
             
             guard let data = data else {
                 Logger.printMessage(message: "No Data", request: "Network Response")
-                failureHandler(false, .noData)
+                completion(.failure(.noData))
                 return
             }
             
-            successHandler(true, data)
+            completion(.success(data))
         }.resume()
     }
 }

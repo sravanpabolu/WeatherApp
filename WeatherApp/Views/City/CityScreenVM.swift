@@ -35,7 +35,7 @@ class CityScreenVM {
         return cityWeatherData?.weather?.first?.weatherDescription ?? ""
     }
     
-    func getCityWeatherData(for location: BookmarkedLocation, successHandler: @escaping SuccessHandler, failureHandler: @escaping FailureHandler) {
+    func getCityWeatherData(for location: BookmarkedLocation, completion: @escaping ((Result<WeatherData, CustomError>) -> Void)) {
         
         let units = (AppSettings.shared.isMetric == .metric) ? "metric" : "imperial"
         let lat = location.lat ?? 0.0
@@ -45,29 +45,23 @@ class CityScreenVM {
         
         Logger.printMessage(message: url, request: "URL")
         
-        NetworkManager().performNetworkRequest(url: url) { (status, data) in
-            guard let data = data else {
-                failureHandler(false, .noData)
-                return
+        NetworkManager().performNetworkRequest(url: url) { (response) in
+            switch response {
+                case .success(let data):
+                    do {
+                        let weatherData = try JSONDecoder().decode(WeatherData.self, from: data)
+                        Logger.printMessage(message: "\(weatherData)", request: "Network Response")
+                        
+                        self.cityWeatherData = weatherData
+                        completion(.success(weatherData))
+                    } catch {
+                        Logger.printMessage(message: "SerializationError", request: "Network Response")
+                        completion(.failure(.serializationError))
+                    }
+                case .failure(let error):
+                    Logger.printMessage(message: error, request: "Error")
+                    completion(.failure(.genericError(message: error.localizedDescription)))
             }
-            
-            Logger.printMessage(message: "\(data)", request: "Network Response Data")
-            
-            do {
-                let weatherData = try JSONDecoder().decode(WeatherData.self, from: data)
-                Logger.printMessage(message: "\(weatherData)", request: "Network Response")
-                
-                self.cityWeatherData = weatherData
-                
-                successHandler(true, nil)
-                
-            } catch {
-                Logger.printMessage(message: "SerializationError", request: "Network Response")
-                failureHandler(false, .serializationError)
-            }
-        } failureHandler: { (status, error) in
-            failureHandler(status, error)
         }
-        
     }
 }
