@@ -40,9 +40,10 @@ class HomeScreenVC: BaseViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(btnAddTapped))
         let settingsButton = UIBarButtonItem(image: UIImage(named: "settings.png"), style: .plain, target: self, action: #selector(self.btnSettingsTapped))
         let helpButton = UIBarButtonItem(image: UIImage(named: "help.png"), style: .plain, target: self, action: #selector(self.btnHelpTapped))
+        let howToUseButton = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(btnPlayTapped))
         
         self.navigationItem.leftBarButtonItem = addButton
-        self.navigationItem.rightBarButtonItems = [helpButton, settingsButton]
+        self.navigationItem.rightBarButtonItems = [howToUseButton, helpButton, settingsButton]
 
         fetchCities()
     }
@@ -70,7 +71,19 @@ class HomeScreenVC: BaseViewController {
     
     @objc private func btnHelpTapped() {
         do {
-            let vc = try HelpScreenVC.instance()
+            let vc: HelpScreenVC = try HelpScreenVC.instance()
+            vc.showRecording = false
+            navigationController?.pushViewController(vc, animated: true)
+        } catch {
+            Logger.printMessage(message: error.localizedDescription, request: "Invalid Controller")
+            self.showAlert(title: Constants.AlertConstants.titleWarning, message: Constants.AlertConstants.msgInvalidController)
+        }
+    }
+    
+    @objc private func btnPlayTapped() {
+        do {
+            let vc: HelpScreenVC = try HelpScreenVC.instance()
+            vc.showRecording = true
             navigationController?.pushViewController(vc, animated: true)
         } catch {
             Logger.printMessage(message: error.localizedDescription, request: "Invalid Controller")
