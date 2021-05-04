@@ -48,23 +48,34 @@ class HomeScreenVC: BaseViewController {
     }
     
     @objc private func btnAddTapped() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc: AddLocationVC = storyboard.instantiateViewController(identifier: Constants.AddLocationVCIdentifier) as AddLocationVC
-        vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        do {
+            let vc: AddLocationVC = try AddLocationVC.instance()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        } catch {
+            Logger.printMessage(message: error.localizedDescription, request: "Invalid Controller")
+            self.showAlert(title: Constants.AlertConstants.titleWarning, message: Constants.AlertConstants.msgInvalidController)
+        }
     }
     
     @objc private func btnSettingsTapped() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc: SettingsVC = storyboard.instantiateViewController(identifier: Constants.SettingsVCIdentifier) as SettingsVC
-        navigationController?.pushViewController(vc, animated: true)
+        do {
+            let vc = try SettingsVC.instance()
+            navigationController?.pushViewController(vc, animated: true)
+        } catch {
+            Logger.printMessage(message: error.localizedDescription, request: "Invalid Controller")
+            self.showAlert(title: Constants.AlertConstants.titleWarning, message: Constants.AlertConstants.msgInvalidController)
+        }
     }
     
     @objc private func btnHelpTapped() {
-        print("Help")
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc: HelpScreenVC = storyboard.instantiateViewController(identifier: Constants.HelpScreenVCIdentifier) as HelpScreenVC
-        navigationController?.pushViewController(vc, animated: true)
+        do {
+            let vc = try HelpScreenVC.instance()
+            navigationController?.pushViewController(vc, animated: true)
+        } catch {
+            Logger.printMessage(message: error.localizedDescription, request: "Invalid Controller")
+            self.showAlert(title: Constants.AlertConstants.titleWarning, message: Constants.AlertConstants.msgInvalidController)
+        }
     }
     
     private func deleteCity(at index: Int) {

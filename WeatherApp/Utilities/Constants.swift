@@ -15,6 +15,7 @@ public enum CustomError: Error {
     case invalidResponse
     case genericError(message: String)
     case dbSaveError
+    case invalidViewController
 }
 
 public typealias SuccessHandler = (_ status: Bool, _ data: Data?) -> Void
@@ -51,4 +52,12 @@ public extension Constants {
     
     static let entitySettings = "Settings"
     static let attrIsMetric = "isMetric"
+}
+
+public extension Constants {
+    struct AlertConstants {
+        static let titleWarning = "Warning"
+        static let btnOk = "OK"
+        static let msgInvalidController = "We can't take you to here now. Please apologize"
+    }
 }
