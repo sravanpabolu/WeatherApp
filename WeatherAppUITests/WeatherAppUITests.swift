@@ -23,13 +23,13 @@ class WeatherAppUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testAlert() {
-        //Make sure you have "Wangdue Phodrang" in the table
-        let app = XCUIApplication()
-        app.launch()
-        app.tables.staticTexts["Wangdue Phodrang"].tap()
-        app.alerts["Invalid Location"].scrollViews.otherElements.buttons["OK"].tap()
-    }
+//    func testAlert() {
+//        //Make sure you have "Wangdue Phodrang" in the table
+//        let app = XCUIApplication()
+//        app.launch()
+//        app.tables.staticTexts["Wangdue Phodrang"].tap()
+//        app.alerts["Invalid Location"].scrollViews.otherElements.buttons["OK"].tap()
+//    }
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {

@@ -25,30 +25,17 @@ class HomeScreenVCTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        
+    func testHomeScreen() throws {
         let app = XCUIApplication()
-        let tablesQuery = app.tables
-        tablesQuery.children(matching: .cell).element(boundBy: 6).staticTexts["Nellore"].swipeUp()
+        
+        app.tables
+            .element(boundBy: 0)
+            .cells
+            .element(boundBy: 0)
+            .swipeUp()
         
         let weatherNavigationBar = app.navigationBars["Weather"]
-        weatherNavigationBar.buttons["Add"].tap()
-        app/*@START_MENU_TOKEN@*/.otherElements["Chennai"]/*[[".maps.otherElements[\"Chennai\"]",".otherElements[\"Chennai\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        app.navigationBars["WeatherApp.AddLocationVC"].buttons["Done"].tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["21/12, ABM Road"]/*[[".cells.staticTexts[\"21\/12, ABM Road\"]",".staticTexts[\"21\/12, ABM Road\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        
-        let okButton = app.alerts["Invalid Location"].scrollViews.otherElements.buttons["OK"]
-        okButton.tap()
 
-//        tablesQuery.children(matching: .cell).element(boundBy: 5).staticTexts["Nellore"].swipeLeft()
-//        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        
-//        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Wangdue Phodrang"]/*[[".cells.staticTexts[\"Wangdue Phodrang\"]",".staticTexts[\"Wangdue Phodrang\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
-//        okButton.tap()
-        
         weatherNavigationBar.children(matching: .button).element(boundBy: 1).tap()
         app.navigationBars["WeatherApp.SettingsVC"].buttons["Weather"].tap()
         weatherNavigationBar.children(matching: .button).element(boundBy: 2).tap()
@@ -58,7 +45,15 @@ class HomeScreenVCTests: XCTestCase {
     }
     
     func testDeleteCity()  {
+        let app = XCUIApplication()
         
+        app.tables
+            .element(boundBy: 0)
+            .cells
+            .element(boundBy: 0)
+            .swipeLeft()
+        
+        app.tables.buttons["Delete"].tap()
     }
 
 }

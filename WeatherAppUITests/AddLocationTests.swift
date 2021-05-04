@@ -1,14 +1,13 @@
 //
-//  CityScreenTests.swift
+//  AddLocationTests.swift
 //  WeatherAppUITests
 //
-//  Created by Sravan Kumar Pabolu on 03/05/21.
+//  Created by Sravan Kumar Pabolu on 04/05/21.
 //
 
 import XCTest
-@testable import WeatherApp
 
-class CityScreenTests: XCTestCase {
+class AddLocationTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -26,14 +25,17 @@ class CityScreenTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testCityScreen() throws {
+    func testAddLocation() throws {
+        
         let app = XCUIApplication()
-        app.tables
-            .element(boundBy: 0)
-            .cells
-            .element(boundBy: 0)
-            .tap()
-
-        app.navigationBars["WeatherApp.CityScreenVC"].buttons["Weather"].tap()
+        app.navigationBars["Weather"].buttons["Add"].tap()
+        
+        let app2 = app
+        app2/*@START_MENU_TOKEN@*/.otherElements["Nagpur"]/*[[".maps.otherElements[\"Nagpur\"]",".otherElements[\"Nagpur\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app2/*@START_MENU_TOKEN@*/.otherElements["Guntur"]/*[[".maps.otherElements[\"Guntur\"]",".otherElements[\"Guntur\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.navigationBars["WeatherApp.AddLocationVC"].buttons["Done"].tap()
+                
+        
     }
+
 }

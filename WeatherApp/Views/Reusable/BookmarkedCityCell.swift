@@ -11,10 +11,6 @@ class BookmarkedCityCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }

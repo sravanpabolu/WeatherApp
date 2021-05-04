@@ -53,6 +53,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="7Jy-jT-WN0" secondAttribute="trailing" constant="10" id="o3P-8K-OGx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" identifier="BookmarkedCityCell"/>
                                         <connections>
                                             <outlet property="subTitle" destination="amu-In-2SV" id="sof-tR-Vi4"/>
                                             <outlet property="title" destination="7Jy-jT-WN0" id="t0A-p4-boW"/>

@@ -12,6 +12,10 @@ class CityTests: XCTestCase {
 
     let cityScreenVM = CityScreenVM()
     
+    let kavali = BookmarkedLocation(name: "Kaveri Nagar", locality: "Nellore", subLocality: "Kaveri Nagar", adminArea: "AP", lat: 14.417335306869404, long: 14.417335306869404)
+    let bangalore = BookmarkedLocation(name: "Ganapathihalli", locality: "Bengaluru", subLocality: "Ganapathihalli", adminArea: "KA", lat: 12.919230692244014, long: 77.39211801181591)
+    let invalidLocation = BookmarkedLocation(name: "Ganapathihalli", locality: "Bengaluru", subLocality: "Ganapathihalli", adminArea: "KA", lat: 1222.919230692244014, long: 177.39211801181591)
+    
     func testVars() {
 //        let temp = cityScreenVM.temperature
         XCTAssertEqual(cityScreenVM.temperature, 0)
@@ -27,7 +31,7 @@ class CityTests: XCTestCase {
         
         var status = false
         
-        cityScreenVM.getCityWeatherData(for: "Chennai") { (responseStatus, _) in
+        cityScreenVM.getCityWeatherData(for: bangalore) { (responseStatus, _) in
             
             status = responseStatus
             
@@ -48,7 +52,7 @@ class CityTests: XCTestCase {
         
         var status = false
         
-        cityScreenVM.getCityWeatherData(for: "Chennai1") { (responseStatus, _) in
+        cityScreenVM.getCityWeatherData(for: invalidLocation) { (responseStatus, _) in
             
             status = responseStatus
             
