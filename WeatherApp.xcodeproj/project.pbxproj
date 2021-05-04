@@ -10,9 +10,16 @@
 		A004EE7A263EFBCD00BBD5AA /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004EE79263EFBCD00BBD5AA /* LoggerTests.swift */; };
 		A004EE7F263EFDE400BBD5AA /* CityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004EE7E263EFDE400BBD5AA /* CityTests.swift */; };
 		A0200173263DEB36002ED080 /* AddLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0200172263DEB36002ED080 /* AddLocationVC.swift */; };
+		A021D9252641292400CE4AE2 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021D9242641292400CE4AE2 /* UIViewController.swift */; };
+		A021D92D2641304000CE4AE2 /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021D92C2641304000CE4AE2 /* UIStoryboard.swift */; };
+		A021D9332641338600CE4AE2 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021D9322641338600CE4AE2 /* LoadingIndicator.swift */; };
 		A0339FA9263D6FBA008849B4 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0339FA8263D6FBA008849B4 /* Logger.swift */; };
 		A0339FAF263D72D3008849B4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0339FAE263D72D3008849B4 /* BaseViewController.swift */; };
 		A0339FBA263D7DE2008849B4 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0339FB9263D7DE2008849B4 /* DBManager.swift */; };
+		A040700C2641396C002ACA22 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A040700B2641396C002ACA22 /* UIView.swift */; };
+		A0407011264143AC002ACA22 /* BookmarkedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0407010264143AC002ACA22 /* BookmarkedLocation.swift */; };
+		A04070162641509D002ACA22 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04070152641509D002ACA22 /* Queue.swift */; };
+		A040701B26415C89002ACA22 /* BookmarkedCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A040701A26415C89002ACA22 /* BookmarkedCityCell.swift */; };
 		A0641A43263D28DB00DBBBA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0641A42263D28DB00DBBBA5 /* AppDelegate.swift */; };
 		A0641A47263D28DB00DBBBA5 /* CityScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0641A46263D28DB00DBBBA5 /* CityScreenVC.swift */; };
 		A0641A4A263D28DB00DBBBA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0641A48263D28DB00DBBBA5 /* Main.storyboard */; };
@@ -61,9 +68,16 @@
 		A004EE79263EFBCD00BBD5AA /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		A004EE7E263EFDE400BBD5AA /* CityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTests.swift; sourceTree = "<group>"; };
 		A0200172263DEB36002ED080 /* AddLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationVC.swift; sourceTree = "<group>"; };
+		A021D9242641292400CE4AE2 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		A021D92C2641304000CE4AE2 /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
+		A021D9322641338600CE4AE2 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		A0339FA8263D6FBA008849B4 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A0339FAE263D72D3008849B4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A0339FB9263D7DE2008849B4 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		A040700B2641396C002ACA22 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		A0407010264143AC002ACA22 /* BookmarkedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedLocation.swift; sourceTree = "<group>"; };
+		A04070152641509D002ACA22 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		A040701A26415C89002ACA22 /* BookmarkedCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedCityCell.swift; sourceTree = "<group>"; };
 		A0641A3F263D28DB00DBBBA5 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0641A42263D28DB00DBBBA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0641A46263D28DB00DBBBA5 /* CityScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityScreenVC.swift; sourceTree = "<group>"; };
@@ -130,12 +144,45 @@
 			path = AddLocation;
 			sourceTree = "<group>";
 		};
+		A021D923264128E000CE4AE2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A021D9242641292400CE4AE2 /* UIViewController.swift */,
+				A021D92C2641304000CE4AE2 /* UIStoryboard.swift */,
+				A040700B2641396C002ACA22 /* UIView.swift */,
+				A04070152641509D002ACA22 /* Queue.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A021D9312641328700CE4AE2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A040702226415CA0002ACA22 /* Reusable */,
+				A0A5814F263EBC4D00F36A25 /* Settings */,
+				A0200171263DEACE002ED080 /* AddLocation */,
+				A0641A9A263D38E300DBBBA5 /* Help */,
+				A0641A99263D38D600DBBBA5 /* City */,
+				A0641A8D263D388100DBBBA5 /* Home */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A0339FAD263D72C5008849B4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				A0339FAE263D72D3008849B4 /* BaseViewController.swift */,
+				A021D9322641338600CE4AE2 /* LoadingIndicator.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		A040702226415CA0002ACA22 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				A040701A26415C89002ACA22 /* BookmarkedCityCell.swift */,
+			);
+			path = Reusable;
 			sourceTree = "<group>";
 		};
 		A0641A36263D28DB00DBBBA5 = {
@@ -161,12 +208,9 @@
 		A0641A41263D28DB00DBBBA5 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				A0A5814F263EBC4D00F36A25 /* Settings */,
-				A0200171263DEACE002ED080 /* AddLocation */,
+				A021D9312641328700CE4AE2 /* Views */,
+				A021D923264128E000CE4AE2 /* Extensions */,
 				A0339FAD263D72C5008849B4 /* Common */,
-				A0641A9A263D38E300DBBBA5 /* Help */,
-				A0641A99263D38D600DBBBA5 /* City */,
-				A0641A8D263D388100DBBBA5 /* Home */,
 				A0641A83263D374C00DBBBA5 /* Models */,
 				A0641A78263D2E3500DBBBA5 /* Utilities */,
 				A0641A42263D28DB00DBBBA5 /* AppDelegate.swift */,
@@ -222,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				A0641A84263D375900DBBBA5 /* WeatherData.swift */,
+				A0407010264143AC002ACA22 /* BookmarkedLocation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -391,16 +436,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A021D92D2641304000CE4AE2 /* UIStoryboard.swift in Sources */,
 				A0641A4D263D28DB00DBBBA5 /* WeatherApp.xcdatamodeld in Sources */,
 				A0641A47263D28DB00DBBBA5 /* CityScreenVC.swift in Sources */,
+				A021D9252641292400CE4AE2 /* UIViewController.swift in Sources */,
 				A0641A85263D375900DBBBA5 /* WeatherData.swift in Sources */,
 				A0200173263DEB36002ED080 /* AddLocationVC.swift in Sources */,
 				A0641A7A263D2E6C00DBBBA5 /* NetworkManager.swift in Sources */,
+				A0407011264143AC002ACA22 /* BookmarkedLocation.swift in Sources */,
 				A0A58151263EBC5C00F36A25 /* SettingsVC.swift in Sources */,
 				A0641A43263D28DB00DBBBA5 /* AppDelegate.swift in Sources */,
 				A0641A9C263D38EF00DBBBA5 /* HelpScreenVC.swift in Sources */,
+				A040700C2641396C002ACA22 /* UIView.swift in Sources */,
 				A0339FAF263D72D3008849B4 /* BaseViewController.swift in Sources */,
+				A040701B26415C89002ACA22 /* BookmarkedCityCell.swift in Sources */,
 				A0339FA9263D6FBA008849B4 /* Logger.swift in Sources */,
+				A021D9332641338600CE4AE2 /* LoadingIndicator.swift in Sources */,
 				A0641AA4263D3A6900DBBBA5 /* HomeScreenVM.swift in Sources */,
 				A0641AAC263D3F4700DBBBA5 /* CityScreenVM.swift in Sources */,
 				A0641A7F263D2E7E00DBBBA5 /* Constants.swift in Sources */,
@@ -408,6 +459,7 @@
 				A0339FBA263D7DE2008849B4 /* DBManager.swift in Sources */,
 				A0A58159263EC50E00F36A25 /* AppSettings.swift in Sources */,
 				A0A5815E263ECD2600F36A25 /* SettingsVM.swift in Sources */,
+				A04070162641509D002ACA22 /* Queue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

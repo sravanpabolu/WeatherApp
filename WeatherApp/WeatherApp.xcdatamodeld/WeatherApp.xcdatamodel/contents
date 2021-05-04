@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H524" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Cities" representedClassName="Cities" syncable="YES" codeGenerationType="class">
+        <attribute name="adminArea" optional="YES" attributeType="String"/>
         <attribute name="cityName" optional="YES" attributeType="String"/>
         <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lat" optional="YES" attributeType="String"/>
+        <attribute name="locality" optional="YES" attributeType="String"/>
+        <attribute name="long" optional="YES" attributeType="String"/>
+        <attribute name="subLocality" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Settings" representedClassName="Settings" syncable="YES" codeGenerationType="class">
         <attribute name="isMetric" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Cities" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="Cities" positionX="-63" positionY="-18" width="128" height="148"/>
         <element name="Settings" positionX="-63" positionY="0" width="128" height="58"/>
     </elements>
 </model>

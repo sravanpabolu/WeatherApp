@@ -42,7 +42,7 @@ class DBManager {
 }
 
 extension DBManager {
-    func insertCity(name: String, isUserChoice: Bool) throws {
+    func insertCity(location: BookmarkedLocation, isUserChoice: Bool) throws {
         let managedContext = self.persistentContainer.viewContext
         
         guard let entity = NSEntityDescription.entity(forEntityName: Constants.citiesEntityName, in: managedContext) else {
@@ -51,7 +51,12 @@ extension DBManager {
         
         let city = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        city.setValue(name, forKey: Constants.attrCityName)
+        city.setValue(location.name, forKey: Constants.attrCityName)
+        city.setValue(location.adminArea, forKey: Constants.attrAdminArea)
+        city.setValue(location.locality, forKey: Constants.attrlocality)
+        city.setValue(location.subLocality, forKey: Constants.attrSubLocality)
+        city.setValue("\(String(describing: location.lat))", forKey: Constants.attrLat)
+        city.setValue("\(String(describing: location.lat))", forKey: Constants.attrLong)
         city.setValue(isUserChoice, forKeyPath: Constants.attrIsDefault)
         
         do {
@@ -64,7 +69,10 @@ extension DBManager {
         }
     }
     
-    func deleteCity(name: String) throws {
+    func deleteCity(location: BookmarkedLocation) throws {
+        guard let name = location.name else {
+            throw CustomError.genericError(message: "Unable to delete location?")
+        }
         let managedContext = self.persistentContainer.viewContext
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: Constants.citiesEntityName)
@@ -89,6 +97,7 @@ extension DBManager {
         
         do {
             cities = try managedContext.fetch(fetchRequest)
+            Logger.printMessage(message: cities, request: "Fetched Cities")
             return cities
         } catch let error as NSError {
             Logger.printMessage(message: "Could not fetch. \(error), \(error.userInfo)", request: "getCities")

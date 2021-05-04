@@ -48,23 +48,34 @@ class HomeScreenVC: BaseViewController {
     }
     
     @objc private func btnAddTapped() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc: AddLocationVC = storyboard.instantiateViewController(identifier: Constants.AddLocationVCIdentifier) as AddLocationVC
-        vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        do {
+            let vc: AddLocationVC = try AddLocationVC.instance()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        } catch {
+            Logger.printMessage(message: error.localizedDescription, request: "Invalid Controller")
+            self.showAlert(title: Constants.AlertConstants.titleWarning, message: Constants.AlertConstants.msgInvalidController)
+        }
     }
     
     @objc private func btnSettingsTapped() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc: SettingsVC = storyboard.instantiateViewController(identifier: Constants.SettingsVCIdentifier) as SettingsVC
-        navigationController?.pushViewController(vc, animated: true)
+        do {
+            let vc = try SettingsVC.instance()
+            navigationController?.pushViewController(vc, animated: true)
+        } catch {
+            Logger.printMessage(message: error.localizedDescription, request: "Invalid Controller")
+            self.showAlert(title: Constants.AlertConstants.titleWarning, message: Constants.AlertConstants.msgInvalidController)
+        }
     }
     
     @objc private func btnHelpTapped() {
-        print("Help")
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc: HelpScreenVC = storyboard.instantiateViewController(identifier: Constants.HelpScreenVCIdentifier) as HelpScreenVC
-        navigationController?.pushViewController(vc, animated: true)
+        do {
+            let vc = try HelpScreenVC.instance()
+            navigationController?.pushViewController(vc, animated: true)
+        } catch {
+            Logger.printMessage(message: error.localizedDescription, request: "Invalid Controller")
+            self.showAlert(title: Constants.AlertConstants.titleWarning, message: Constants.AlertConstants.msgInvalidController)
+        }
     }
     
     private func deleteCity(at index: Int) {
@@ -80,9 +91,9 @@ class HomeScreenVC: BaseViewController {
         }
     }
     
-    private func insertCity(name: String) {
+    private func insertCity(location: BookmarkedLocation) {
         do {
-            try self.homeScreenVM.insertCity(name: name)
+            try self.homeScreenVM.insertCity(location: location)
         } catch {
             Logger.printMessage(message: error.localizedDescription, request: "DBManager Insertion Error")
         }
@@ -94,6 +105,7 @@ class HomeScreenVC: BaseViewController {
     }
     
     private func fetchCities() {
+        LoadingIndicator.shared.showLoader(on: self.view)
         do {
             try homeScreenVM.fetchCities()
         } catch  {
@@ -102,6 +114,7 @@ class HomeScreenVC: BaseViewController {
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            LoadingIndicator.shared.dismissLoader()
             self.tableView.reloadData()
         }
     }
@@ -113,9 +126,10 @@ extension HomeScreenVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.HomeViewCellIdentifier) else { return UITableViewCell() }
+        guard let cell: BookmarkedCityCell = tableView.dequeueReusableCell(withIdentifier: Constants.BookmarkedCityCellIdentifier) as? BookmarkedCityCell else { return UITableViewCell() }
         
-        cell.textLabel?.text = homeScreenVM.cities[indexPath.row]
+        cell.title.text = homeScreenVM.cities[indexPath.row].name
+        cell.subTitle.text = homeScreenVM.cities[indexPath.row].locality
         
         return cell
     }
@@ -125,7 +139,9 @@ extension HomeScreenVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc: CityScreenVC = storyboard.instantiateViewController(identifier: Constants.CityScreenVCIdentifier) as CityScreenVC
-        vc.cityName = homeScreenVM.cities[indexPath.row]
+        
+        let someLocation = homeScreenVM.cities[indexPath.row]
+        vc.location = someLocation
         navigationController?.pushViewController(vc, animated: true)
     }
         
@@ -137,8 +153,16 @@ extension HomeScreenVC: UITableViewDelegate {
 }
 
 extension HomeScreenVC: AddLocationVCDelegate {
-    func didSelect(location: String) {
+    func didSelect(location: BookmarkedLocation) {
         Logger.printMessage(message: location, request: "Selected location")
-        insertCity(name: location)
+        guard let name = location.name,
+              let locality = location.locality,
+              !name.isEmpty,
+              !locality.isEmpty else {
+            self.showAlert(title: Constants.AlertConstants.titleError,
+                           message: Constants.AlertConstants.msgInvalidLocation)
+            return
+        }
+        insertCity(location: location)
     }
 }
